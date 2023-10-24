@@ -1,5 +1,5 @@
 +++
-title = "Search"
+title = "Pesquisar"
 searchPage = true
 type = "search"
 +++
