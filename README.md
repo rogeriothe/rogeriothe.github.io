@@ -4,6 +4,7 @@ This repository offers an example site for [Hugo](https://gohugo.io/) and also i
 
 # Using
 
+
 1. [Install Hugo](https://gohugo.io/overview/installing/)
 2. Clone this repository
 ```bash
