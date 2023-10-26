@@ -18,17 +18,24 @@ Uma forma de apagar todos os volumes do Docker:
 
 Stop the container(s) using the following command:
 
+```bash
 docker-compose down
+```
 
 Delete all containers using the following command:
 
+```bash
 docker rm -f $(docker ps -a -q)
+```
 
 Delete all volumes using the following command:
 
+```bash
 docker volume rm $(docker volume ls -q)
+```
 
 Restart the containers using the following command:
 
+```bash
 docker-compose up -d
-
+```
