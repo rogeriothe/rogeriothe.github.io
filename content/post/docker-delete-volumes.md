@@ -1,8 +1,8 @@
 +++
-author = "Hugo Authors"
-title = "Rich Content"
+author = "Rogério Lima"
+title = "Excluindo todos os volumes do Docker"
 date = "2023-10-26"
-description = "A brief description of Hugo Shortcodes"
+description = "Como excluir todos os volumes do Docker"
 tags = [
     "docker",
     "volumes",
