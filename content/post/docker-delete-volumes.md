@@ -7,7 +7,7 @@ tags = [
     "docker",
     "volumes",
 ]
-thumbnail = "images/dollar.png"
+thumbnail = "images/301_docker.jpg"
 
 +++
 Após muitos testes em ambiente de desenvolvimento pode restar muitos volumes sem mais utilidade.
