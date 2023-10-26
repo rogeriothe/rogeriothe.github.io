@@ -11,6 +11,7 @@ thumbnail = "images/301_docker.jpg"
 
 +++
 Após muitos testes em ambiente de desenvolvimento pode restar muitos volumes sem mais utilidade.
+
 Uma forma de apagar todos os volumes do Docker:
 
 ---
