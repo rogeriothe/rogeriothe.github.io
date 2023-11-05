@@ -7,7 +7,7 @@ tags = [
     "django",
     "orm",
 ]
-thumbnail = "images/django-bulk-inserts.jpg"
+thumbnail = "images/django-bulk-inserts.png"
 
 +++
 
