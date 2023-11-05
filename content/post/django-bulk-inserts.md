@@ -12,8 +12,10 @@ thumbnail = "images/django-bulk-inserts.jpg"
 +++
 
 
-How to Use Django Bulk Inserts for Greater Efficiency
+# How to Use Django Bulk Inserts for Greater Efficiency
 
+
+[https://www.caktusgroup.com/blog/2019/01/09/django-bulk-inserts/](https://www.caktusgroup.com/blog/2019/01/09/django-bulk-inserts/)
 
 CEO Tobias McNulty is programming at his desk.
 
