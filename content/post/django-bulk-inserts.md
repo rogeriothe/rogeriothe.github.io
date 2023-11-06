@@ -14,8 +14,8 @@ thumbnail = "images/django-bulk-inserts.png"
 
 # How to Use Django Bulk Inserts for Greater Efficiency
 
-
-[https://www.caktusgroup.com/blog/2019/01/09/django-bulk-inserts/](https://www.caktusgroup.com/blog/2019/01/09/django-bulk-inserts/)
+### Artigo original acessado em 06/11/2023:
+[How to Use Django Bulk Inserts for Greater Efficiency](https://www.caktusgroup.com/blog/2019/01/09/django-bulk-inserts/)
 
 CEO Tobias McNulty is programming at his desk.
 
@@ -25,17 +25,20 @@ Today, we use Django's Model.objects.bulk_create() regularly to help speed up op
 
 While it's great to have support for bulk inserts directly in Django's ORM, the ORM does not provide much assistance in terms of managing the bulk insertion process itself. One common pattern we found ourselves using for bulk insertions was to:
 
+```
     build up a list of objects
     when the list got to a certain size, call bulk_create()
     make sure any objects remaining (i.e., which might be fewer than the chunk size of prior calls to bulk_create()) are inserted as well
-
+```
 Since for this particular project we needed to repeat the same logic for a number of different models in a number of different places, it made sense to abstract that into a single class to handle all of our bulk insertions. The API we were looking for was relatively straightforward:
-
+```
     Set bulk_mgr = BulkCreateManager(chunk_size=100) to create an instance of our bulk insertion helper with a specific chunk size (the number of objects that should be inserted in a single query)
     Call bulk_mgr.add(unsaved_model_object) for each model instance we needed to insert. The underlying logic should determine if/when a "chunk" of objects should be created and does so, without the need for the surrounding code to know what's happening. Additionally, it should handle objects from any model class transparently, without the need for the calling code to maintain separate object lists for each model.
     Call bulk_mgr.done() after adding all the model objects, to insert any objects that may have been queued for insertion but not yet inserted.
-
+```
 Without further ado, here's a copy of the helper class we came up with for this particular project:
+
+```python
 
 from collections import defaultdict
 from django.apps import apps
@@ -79,9 +82,9 @@ class BulkCreateManager(object):
         for model_name, objs in self._create_queues.items():
             if len(objs) > 0:
                 self._commit(apps.get_model(model_name))
-
+```
 You can then use this class like so:
-
+```python
 import csv
 
 with open('/path/to/file', 'rb') as csv_file:
@@ -89,7 +92,7 @@ with open('/path/to/file', 'rb') as csv_file:
     for row in csv.reader(csv_file):
         bulk_mgr.add(MyModel(attr1=row['attr1'], attr2=row['attr2']))
     bulk_mgr.done()
-
+```
 I tried to simplify the code here as much as possible for the purposes of this example, but you can obviously expand this as needed to handle multiple model classes and more complex business logic. You could also potentially put bulk_mgr.done() in its own finally: or except ExceptionType: block, however, you should be careful not to write to the database again if the original exception is database-related.
 
 Another useful pattern might be to design this as a context manager in Python. We haven't tried that yet, but you might want to.
